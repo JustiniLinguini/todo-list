@@ -27,8 +27,8 @@ header{
 
 nav{
     background-color: var(--dark-mode-ui-color);
-    overflow: scroll auto;
     opacity: 80%;
+    overflow: scroll auto;
     grid-column: 1 / 2;
     grid-row: 2 / 5;
 }

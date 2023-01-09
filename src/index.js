@@ -3,35 +3,20 @@ import './style.css';
 import toDoList from './to-do-list';
 import toDoListItem from './list-item';
 import domTools from "./dom-tools";
-import initListPopUp from './init-list-pop-up';
+import popUpClick from './init-list-pop-up';
 
-const toolSet = new domTools;
-const projectDisplay = document.querySelector('.project-display');
 const newListButton = document.querySelector('#make-new-list');
+const projectDisplay = document.querySelector('.project-display');
 const mainContent = document.querySelector('#content');
 
-newListButton.addEventListener('click',() => {
-    const dateCreated = new Date();
-    const popUp = initListPopUp();
-    projectDisplay.appendChild(popUp);
+const toolSet = new domTools;
 
-    const projectNameInputField = document.querySelector('.project-name-input');
-    const projectNamer = document.querySelector('.project-namer');
+function popUpListener(){
+    popUpClick(projectDisplay);
+    this.removeEventListener('click', popUpListener);
+}
 
-    projectNamer.addEventListener('click', () => {
-        let projectName = projectNameInputField.value;
-        projectNameInputField.value = "";
-        popUp.remove();
-        const initToDoList = new toDoList(projectName, dateCreated);
-        const toDoListCard = toolSet.makeCard(initToDoList);
-        projectDisplay.appendChild(toDoListCard);
-    })
+newListButton.addEventListener('click', popUpListener);
 
-    /*
-    const initToDoList = new toDoList("Blank List", dateCreated);
-    const toDoListCard = toolSet.makeCard(initToDoList);
-    projectDisplay.appendChild(toDoListCard);
-    */
-})
 
 
